@@ -1,0 +1,11 @@
+apiVersion: training.eduk8s.io/v1alpha1
+kind: WorkshopSession
+metadata:
+  name: lab-markdown-sample
+spec:
+  session:
+    id: markdown
+    ingress:
+      domain: magic-127-0-0-1.nip.io
+  environment:
+    name: lab-markdown-sample

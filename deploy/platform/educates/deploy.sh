@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -x 
 export EDUCATES_VERSION="develop"
 export DEFAULT_CLUSTER_NAME="CHANGEME"
 export DEFAULT_ENVIRONMENT="base"
@@ -48,7 +48,8 @@ installEducates() {
         fi
 
         echo "===== Setting Ingress Domain to ${IPADDRESS}.nip.io"
-        kubectl set env deployment/eduk8s-operator -n eduk8s INGRESS_DOMAIN="${IPADDRESS}.nip.io"
+        kubectl set env deployment/eduk8s-operator -e INGRESS_DOMAIN="magic-127-0-0-1.nip.io" -n eduk8s
+        kubectl set env deployment/eduk8s-operator -e SYSTEM_PROFILE="default-system-profile" -n eduk8s
     fi
 }
 
@@ -68,8 +69,8 @@ loadWorkshop() {
     workshop_yaml_resolved=$(echo "${workshop_yaml_original}" | sed "s/image: ${WORKSHOP_NAME}/image: localhost:5000\/${WORKSHOP_NAME}/g")
     workshop_yaml_resolved+="$(<${DIR}/emptyDirOverride.yaml.snippet)"
     echo "${workshop_yaml_resolved}" | kubectl apply -f -
-    kubectl apply -f ${DIR}/../../../workshop-resources/training-portal.yaml
-
+    kubectl apply -f ${DIR}/../../../workshop-resources/
+    
     echo "===== Waiting for Trainging Portal to be Running"
     while true; do
         if [[ `kubectl get trainingportals.training.eduk8s.io --no-headers | grep ${WORKSHOP_NAME}` =~ "Running" ]]

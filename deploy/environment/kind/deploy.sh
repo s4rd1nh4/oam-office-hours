@@ -59,15 +59,16 @@ start() {
 EOF
 
     echo "===== Installing Security Policies"
-    kubectl apply -f ${DIR}/policy-resources
+    #kubectl delete -f ${DIR}/policy-resources
 
     echo "===== Installing Ingress Controller"
-    kubectl create ns projectcontour
-    kubectl apply -f ${DIR}/ingress-resources
-    kubectl apply -f https://raw.githubusercontent.com/projectcontour/contour/release-${CONTOUR_VERSION}/examples/render/contour.yaml
-    kubectl patch daemonsets -n projectcontour envoy -p '{"spec":{"template":{"spec":{"nodeSelector":{"ingress-ready":"true"},"tolerations":[{"key":"node-role.kubernetes.io/master","operator":"Equal","effect":"NoSchedule"}]}}}}'
-    kubectl rollout status deployment/contour -n projectcontour
-    kubectl rollout status daemonset/envoy -n projectcontour
+    kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+    #kubectl create ns projectcontour
+    #kubectl apply -f ${DIR}/ingress-resources
+    #kubectl apply -f https://raw.githubusercontent.com/projectcontour/contour/release-${CONTOUR_VERSION}/examples/render/contour.yaml
+    #kubectl patch daemonsets -n projectcontour envoy -p '{"spec":{"template":{"spec":{"nodeSelector":{"ingress-ready":"true"},"tolerations":[{"key":"node-role.kubernetes.io/master","operator":"Equal","effect":"NoSchedule"}]}}}}'
+    #kubectl rollout status deployment/contour -n projectcontour
+    #kubectl rollout status daemonset/envoy -n projectcontour
 }
 
 stop() {

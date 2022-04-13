@@ -2,15 +2,23 @@
 apiVersion: training.eduk8s.io/v1alpha1
 kind: TrainingPortal
 metadata:
-  name: cnd-config-practices
+  name: oam-office-hours
 spec:
   portal:
+    ingress:
+      domain: magic-127-0-0-1.nip.io
     registration:
       type: anonymous
     updates:
       workshop: true
   workshops:
-  - name: cnd-config-practices
+  - name: oam-office-hours
+    capacity: 2
+    reserved: 1
+    expires: 1h
+    orphaned: 30m
+  - name: lab-markdown-sample
     capacity: 1
-    expires: 180m
-    orphaned: 5m
+    reserved: 0
+    expires: 1h
+    orphaned: 30m

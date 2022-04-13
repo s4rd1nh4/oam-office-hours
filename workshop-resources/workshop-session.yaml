@@ -1,0 +1,11 @@
+apiVersion: training.eduk8s.io/v1alpha1
+kind: WorkshopSession
+metadata:
+  name: oam-office-hours
+spec:
+  session:
+    id: oam
+    ingress:
+      domain: magic-127-0-0-1.nip.io
+  environment:
+    name: oam-office-hours

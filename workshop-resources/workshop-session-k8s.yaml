@@ -1,0 +1,11 @@
+apiVersion: training.eduk8s.io/v1alpha1
+kind: WorkshopSession
+metadata:
+  name: eduk8s-training-portal
+spec:
+  session:
+    id: k8s
+    ingress:
+      domain: magic-127-0-0-1.nip.io
+  environment:
+    name: eduk8s-training-portal-w01

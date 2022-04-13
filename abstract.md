@@ -16,7 +16,7 @@ tags:
   - Spring Boot
   - Kubernetes
 length: 180
-lab: cnd-config-practices
+lab: oam-office-hours
 ---
 
 This is a workshop for developers and application operators
@@ -33,6 +33,7 @@ After completing the workshop, you will be able to:
 -   Explain the concept of *Configuration Drift*,
     why it can be a problem,
     and how to avoid it.
+    
 
 This workshop is the second in a series of workshops that explore
 cloud-native development and application operations practices.

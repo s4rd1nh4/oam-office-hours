@@ -12,14 +12,7 @@ nodes:
     kind: InitConfiguration
     nodeRegistration:
       kubeletExtraArgs:
-        node-labels: "ingress-ready=true"
-  - |
-    kind: ClusterConfiguration
-    metadata:
-      name: config
-    apiServer:
-      extraArgs:
-        enable-admission-plugins: PodSecurityPolicy        
+        node-labels: "ingress-ready=true"   
   extraPortMappings:
   - containerPort: 80
     hostPort: 80

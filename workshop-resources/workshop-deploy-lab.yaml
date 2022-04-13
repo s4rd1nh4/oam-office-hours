@@ -1,0 +1,28 @@
+apiVersion: training.eduk8s.io/v1alpha2
+kind: Workshop
+metadata:
+  name: lab-markdown-sample
+spec:
+  title: Markdown Sample
+  description: A sample workshop using Markdown
+  vendor: stackspot.com
+  difficulty: beginner
+  duration: 15m
+  url: https://github.com/eduk8s/lab-markdown-sample
+  content:
+    #image: quay.io/eduk8s/lab-markdown-sample:master
+    files: https://github.com/s4rd1nh4/learning-center-markdown-accelerator
+  session:
+    env:
+    - name: NODE_TLS_REJECT_UNAUTHORIZED
+      value: "0"
+    namespaces:
+      budget: small
+    applications:
+      terminal:
+        enabled: true
+        layout: split
+      console:
+        enabled: false
+      editor:
+        enabled: false
